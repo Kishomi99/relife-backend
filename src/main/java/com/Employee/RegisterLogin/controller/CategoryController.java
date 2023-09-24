@@ -38,6 +38,7 @@ public class CategoryController {
 	}
 	
 	@PostMapping("/update/{categoryId}")
+<<<<<<< HEAD
 	public ResponseEntity<ApiResponse> updateCategory(@PathVariable("categoryId") int categoryId,@RequestBody Category category) {
 		
 		if (!categoryService.findById(categoryId)) {
@@ -50,3 +51,12 @@ public class CategoryController {
 		// If the category doesn't exist then return a response of unsuccessful.
 		
 }
+=======
+	public String updateCategory(@PathVariable("categoryId") int categoryId,@RequestBody Category category) {
+		
+		categoryService.editCategory(categoryId,category);
+
+		return "category Updated";
+		
+}}
+>>>>>>> a0c77a5 (fixed-category-service)
