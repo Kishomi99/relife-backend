@@ -8,5 +8,9 @@ import com.Employee.RegisterLogin.model.User;
 
 @Repository
 public interface CategoryRepo extends JpaRepository<Category, Integer>{
+<<<<<<< HEAD
 
+=======
+	Category findByCategoryName(String categoryName);
+>>>>>>> a0c77a5 (fixed-category-service)
 }
