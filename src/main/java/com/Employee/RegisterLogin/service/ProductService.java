@@ -12,6 +12,8 @@ import com.Employee.RegisterLogin.model.Category;
 import com.Employee.RegisterLogin.model.Product;
 import com.Employee.RegisterLogin.repository.ProductRepository;
 
+import exceptions.ProductNotExistsException;
+
 @Service
 public class ProductService {
 
@@ -62,4 +64,12 @@ public class ProductService {
 	        product.setPrice(productDto.getPrice());
 	        productRepository.save(product);
 	    }
+
+		public Product findById(Integer productId)throws ProductNotExistsException {
+		Optional<Product> optionalProduct =	productRepository.findById(productId);
+			if(optionalProduct.isEmpty()) {
+				throw new ProductNotExistsException("product id is invalid"+productId);
+			}
+			return optionalProduct.get();
+		}
 }
