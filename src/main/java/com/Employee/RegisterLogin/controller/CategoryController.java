@@ -21,42 +21,32 @@ import com.Employee.RegisterLogin.service.CategoryService;
 @CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/category")
 public class CategoryController {
-	
+
 	@Autowired
 	CategoryService categoryService;
-	
+
 	@PostMapping("/create")
 	public ResponseEntity<ApiResponse> createCategory(@RequestBody Category category) {
 		categoryService.createCategory(category);
 		return new ResponseEntity<ApiResponse>(new ApiResponse(true, "created the category"), HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping("/list")
-	public  List<Category>  listCategory() {
-		return  categoryService.listCategory();
-	
+	public List<Category> listCategory() {
+		return categoryService.listCategory();
 	}
-	
+
 	@PostMapping("/update/{categoryId}")
-<<<<<<< HEAD
-	public ResponseEntity<ApiResponse> updateCategory(@PathVariable("categoryId") int categoryId,@RequestBody Category category) {
-		
+	public ResponseEntity<ApiResponse> updateCategory(@PathVariable("categoryId") int categoryId, @RequestBody Category category) {
 		if (!categoryService.findById(categoryId)) {
 			// If the category exists then update it.
 			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category does not exist"), HttpStatus.NOT_FOUND);
 		}
+
+		// If the category exists, update it.
+		// Call your update logic here.
+		categoryService.editCategory(categoryId, category);
+
 		return new ResponseEntity<ApiResponse>(new ApiResponse(true, "updated the category"), HttpStatus.OK);
-		}
-
-		// If the category doesn't exist then return a response of unsuccessful.
-		
+	}
 }
-=======
-	public String updateCategory(@PathVariable("categoryId") int categoryId,@RequestBody Category category) {
-		
-		categoryService.editCategory(categoryId,category);
-
-		return "category Updated";
-		
-}}
->>>>>>> a0c77a5 (fixed-category-service)
